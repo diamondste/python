@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Playground</title>
+    <style>
+        h1 {
+            text-align: center;
+
+        }
+
+        div.main{
+            text-align: center;
+        }
+
+        div.box{
+            display: inline-block;
+            margin: 10px;
+            height: 180px;
+            width: 180px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+        <h1>Welcome!</h1>
+        <div class="main">
+            {%for i in range(3):%}
+            <div class="box"></div>
+            {%endfor%}
+        </div>
+</body>
+</html>

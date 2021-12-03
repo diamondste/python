@@ -1,0 +1,26 @@
+
+h1 {
+    text-align: center;
+    color: red;
+    background-color: black;
+    margin: 10px;
+
+}
+
+.wrapper{
+    text-align: center;
+}
+
+.main{
+    height: 280px;
+    width: 280px;
+    border: none;
+}
+
+.box1{
+    background-color: black;
+}
+
+.box2{
+    background-color: red;
+}

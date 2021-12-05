@@ -18,5 +18,5 @@ class User:
         users = []
 
         for user in results: 
-            friends.append( cls(user) )
+            users.append( cls(user) )
         return users

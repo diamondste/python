@@ -1,3 +1,4 @@
+
 import pymysql.cursors
 
 class MySQLConnection:
@@ -36,5 +37,5 @@ class MySQLConnection:
 
                 self.connection.close()
     
-    def connectToMySQL(db):
-        return MySQLConnection(db)
+def connectToMySQL(db):
+    return MySQLConnection(db)

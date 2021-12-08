@@ -12,7 +12,7 @@ class MySQLConnection:
         self.connection = connection
 
     def query_db(self, query, data=None):
-        with self.conection.cursor() as cursor:
+        with self.connection.cursor() as cursor:
             try: 
                 query = cursor.mogrify(query, data)
                 print("Running Query:", query)

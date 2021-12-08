@@ -12,35 +12,35 @@
     <body>
         <div class="container">
             <h3>Dojo Survey</h3>
-            <form action='/dojo/create' method='post'>
+            <form action='/create/dojo' method='post'>
                 <div class="mb-3">
-                    <label for="nameinput" class="form-label">Name:</label>
-                    <input type="text" class="form-control" id="nameinput"  name="name" placeholder="Jane Doe"/>
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name"  name="name" placeholder="Jane Doe"/>
                 </div>
                 <div class="mb-3">
-                    <label for="locationinput" class="form-label">Dojo Location:</label>
-                    <select class="form-select" name="location" aria-label="Default select example">
-                        <option selected>---Select A Location---</option>
-                        <option>Chicago</option>
-                        <option>Online</option>
-                        <option>Seattle</option>
-                        <option>Burbank</option>
-                        <option>Bellevue</option>
+                    <label for="location" class="form-label">Dojo Location:</label>
+                    <select class="form-select" name="location" id="location" aria-label="Default select example">
+                        <option value="">---Select A Location---</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Online">Online</option>
+                        <option value="Seattle">Seattle</option>
+                        <option value="Burbank">Burbank</option>
+                        <option value="Bellevue">Bellevue</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="languageinput" class="form-label">Favorite Language:</label>
-                    <select class="form-select" name="language" aria-label="Default select example">
-                        <option selected>---Select A Language---</option>
-                        <option>HTML</option>
-                        <option>CSS</option>
-                        <option>JavaScrpit</option>
-                        <option>Python</option>
-                        <option>C#</option>
+                    <label for="language" class="form-label">Favorite Language:</label>
+                    <select class="form-select" name="language" id="language" aria-label="Default select example">
+                        <option value="">---Select A Language---</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScrpit">JavaScrpit</option>
+                        <option value="Python">Python</option>
+                        <option value="C#">C#</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="comments" class="form-label">Comments:</label>
+                    <label for="comment" class="form-label">Comments:</label>
                     <textarea class="form-control" name="comment" id="comment" rows="5"></textarea>
                 </div>
                 <input class="btn btn-primary" type="submit" value="Sumbit"/>

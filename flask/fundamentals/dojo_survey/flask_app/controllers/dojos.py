@@ -6,7 +6,7 @@ from flask_app.models.dojo import Dojo
 def index():
     return render_template("index.html")
 
-@app.route('/dojo/create', methods=['POST'])
+@app.route('/create/dojo', methods=['POST'])
 def create():
     if Dojo.is_valid(request.form):
         Dojo.save(request.form)
@@ -15,5 +15,5 @@ def create():
 
 
 @app.route('/results')
-def result(id):
+def result():
     return render_template("result.html", dojo=Dojo.get_last())

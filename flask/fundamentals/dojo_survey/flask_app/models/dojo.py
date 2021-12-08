@@ -19,7 +19,7 @@ class Dojo:
     @classmethod
     def get_last(cls):
         query = "SELECT * FROM dojos ORDER BY dojos.id DESC LIMIT 1;"
-        results = connectToMySQL('dojo_survey_schema').query_db(query, data)
+        results = connectToMySQL('dojo_survey_schema').query_db(query)
         return Dojo(results[0])
     
     @staticmethod

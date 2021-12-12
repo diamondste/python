@@ -30,3 +30,21 @@ class Email:
             flash("Email is not valid")
             is_valid = False
         return is_valid
+
+#  @classmethod
+#     def destroy(cls,data):
+#         query = "DELETE FROM emails WHERE id = %(id)s;"
+#         return connectToMySQL(cls.db).query_db(query,data)
+
+#     @staticmethod
+#     def is_valid(email):
+#         is_valid = True
+#         query = "SELECT * FROM emails WHERE email = %(email)s;"
+#         results = connectToMySQL(Email.db).query_db(query,email)
+#         if len(results) >= 1:
+#             flash("Email already taken.")
+#             is_valid=False
+#         if not EMAIL_REGEX.match(email['email']):
+#             flash("Invalid Email!!!")
+#             is_valid=False
+#         return is_valid

@@ -16,3 +16,12 @@ def create():
 @app.route('/success')
 def success():
     return render_template("success.html", email = Email.get_all())
+
+
+# @app.route('/destroy/<int:id>')
+# def destroy_email(id):
+#     data = {
+#         "id": id
+#     }
+#     Email.destroy(data)
+#     return redirect('/results')

@@ -1,8 +1,9 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask import flash 
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.+_-]+\.[a-zA-Z0-9.+_-]+$')
+from flask import flash 
 class User: 
+    db = "register_login"
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -15,12 +16,12 @@ class User:
     @classmethod
     def save(cls, data):
         query = "INSERT into user (first_name, last_name, email, password) VALUES(%(first_name)s , %(last_name)s , %(name)s , %(password)s);"
-        return connectToMySQL('register_login').mysql.query_db(query, data)
+        return connectToMySQL(cls.db).query_db(query, data)
     
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM user;"
-        results = connectToMySQL('register_login').query_db(query)
+        results = connectToMySQL(cls.db).query_db(query)
         users = []
         for user in results:
             users.append(cls(user))
@@ -29,13 +30,13 @@ class User:
     @classmethod
     def get_one(cls, data):
         query = "SELECT * FROM user WHERE id = %(id)s;"
-        result = connectToMySQL('register_login').query_db(query, data)
+        result = connectToMySQL(cls.db).query_db(query, data)
         return cls(result[0])
     
     @classmethod
     def get_by_email(cls, data):
         query = "SELECT * FROM user WHERE email = %(email)s;"
-        result = connectToMySQL('register_login').query_db(query, data)
+        result = connectToMySQL(cls.db).query_db(query, data)
 
         if len(result) < 1:
             return False

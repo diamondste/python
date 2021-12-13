@@ -10,34 +10,33 @@ def index():
 
 @app.route('/register', methods=['POST'])
 def register():
-    if not User.is_valid(request.form):
+    if not User.validate(request.form):
         return redirect('/')
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
 
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
-        "password" : pw_hash
+        "password" : bcrypt.generate_password_hash(request.form['password'])
     }
 
-    user_id = User.save(data)
+    id = User.save(data)
 
-    session['user_id'] = user_id
+    session['user_id'] = id
     return redirect('/dashboard')
 
 @app.route('/login', methods=['POST'])
 def login():
-    user_in_db = User.get_by_email(request.form)
+    user = User.get_by_email(request.form)
 
-    if not user_in_db:
-        flash("Invalid Email/Password")
+    if not user:
+        flash("Invalid Email/Password", "login")
         return redirect('/')
-    if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
+    if not bcrypt.check_password_hash(user.password, request.form['password']):
 
-        flash("Invalid Email/Password")
+        flash("Invalid Email/Password", "login")
         return redirect('/')
-    session['user_id'] = user_in_db
+    session['user_id'] = user.id
     return redirect('/dashboard')
 
 @app.route('/dashboard')

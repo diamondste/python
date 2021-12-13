@@ -15,7 +15,7 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT into user (first_name, last_name, email, password) VALUES(%(first_name)s , %(last_name)s , %(name)s , %(password)s);"
+        query = "INSERT INTO user (first_name, last_name, email, password) VALUES(%(first_name)s , %(last_name)s , %(email)s , %(password)s);"
         return connectToMySQL(cls.db).query_db(query, data)
     
     @classmethod
@@ -43,26 +43,26 @@ class User:
         return cls(result[0])
 
     @staticmethod
-    def is_valid(user):
+    def validate(user):
         is_valid = True
         query = "SELECT * FROM user WHERE email = %(email)s;"
         results = connectToMySQL(User.db).query_db(query, user)
         if len(results) >= 1:
-            flash("Email already taken.")
+            flash("Email already taken.", "register")
             is_valid = False
         if not EMAIL_REGEX.match(user['email']):
-            flash("Invaild Email")
+            flash("Invaild Email", "register")
             is_valid = False 
         if len(user['first_name']) < 2:
             is_valid = False 
-            flash("Last  Name must be at least 2 characters.")
+            flash("Last  Name must be at least 2 characters." , "register")
         if len(user['last_name']) < 2:
             is_valid = False 
-            flash("Last Name must be at least 2 characters.")
+            flash("Last Name must be at least 2 characters.", "register")
         if len(user['password']) < 2:
             is_valid = False 
-            flash("Password must be at least 8 characters.")
+            flash("Password must be at least 8 characters.", "register")
         if user['password'] != user['confirm']: 
-            flash("Password doesn't match")
+            flash("Password doesn't match", "register")
         return is_valid
         

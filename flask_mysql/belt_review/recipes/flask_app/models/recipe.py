@@ -17,7 +17,7 @@ class Recipe:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO recipes (name, description, instructions, date, thirty_minute, user_id) VALUES(%(name)s , %(description)s , %(instructions)s , %(date)s , %(thirty_minute)s %(user_id)s);"
+        query = "INSERT INTO recipes (name, description, instructions, date, thirty_minute, user_id) VALUES(%(name)s , %(description)s , %(instructions)s , %(date)s , %(thirty_minute)s , %(user_id)s);"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
@@ -26,13 +26,14 @@ class Recipe:
         results = connectToMySQL(cls.db).query_db(query)
         recipes = []
         for row in results:
+            print(row['date'])
             recipes.append(cls(row))
         return recipes
 
     @classmethod
     def get_one(cls, data):
-        query = "SELECT * FROM recpies WHERE id = %(id)s;"
-        results = connectToMySQL(cls.db).query_db(query)
+        query = "SELECT * FROM recipes WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
         return cls(results[0])
 
     @classmethod

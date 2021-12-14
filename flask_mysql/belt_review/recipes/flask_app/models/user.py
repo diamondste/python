@@ -5,14 +5,14 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.+_-]+\.[a-zA-Z0-9.+_-]+$
 from flask import flash 
 class User: 
     db = "recipes"
-    def __init__(self, data):
-        self.id = data['id']
-        self.first_name = data['first_name']
-        self.last_name = data['last_name']
-        self.email = data['email']
-        self.password = data['password']
-        self.created_at = data['created_at']
-        self.updated_at = data['updated_at']
+    def __init__(self, db_data):
+        self.id = db_data['id']
+        self.first_name = db_data['first_name']
+        self.last_name = db_data['last_name']
+        self.email = db_data['email']
+        self.password = db_data['password']
+        self.created_at = db_data['created_at']
+        self.updated_at = db_data['updated_at']
 
     @classmethod
     def save(cls, data):

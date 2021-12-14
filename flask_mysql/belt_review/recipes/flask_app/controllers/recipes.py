@@ -23,8 +23,8 @@ def create():
         "name": request.form['name'],
         "description": request.form['description'],
         "instructions": request.form['instructions'],
-        "thirty_minute" : request.form['thirty_minute'],
-        "date": request.form['thirty_minute'],
+        "thirty_minute" : int(request.form['thirty_minute']),
+        "date": request.form['date'],
         "user_id": session["user_id"]
 
     }
@@ -45,7 +45,7 @@ def edit(id):
     return render_template("edit_recipe.html", edit=Recipe.get_one(data), user = User.get_one(user_data))
 
 @app.route('/recipe/<int:id>')
-def display_recipe(id):
+def show_recipe(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data ={
@@ -54,7 +54,7 @@ def display_recipe(id):
     user_data = { 
         "id": session['user_id']
     }
-    return render_template("edit_recipe.html", edit=Recipe.get_one(data), user = User.get_one(user_data))
+    return render_template("show_recipe.html", recipe=Recipe.get_one(data), user = User.get_one(user_data))
 
 @app.route('/update/recipe', methods=['POST'])
 def update():
@@ -67,9 +67,9 @@ def update():
         "name": request.form['name'],
         "description": request.form['description'],
         "instructions": request.form['instructions'],
-        "thirty_minute" : request.form['thirty_minute'],
-        "date": request.form['thirty_minute'],
-        "user_id": session["user_id"]
+        "thirty_minute" : int(request.form['thirty_minute']),
+        "date": request.form['date'],
+        "id": request.form["id"]
 
     }
     Recipe.update(data)

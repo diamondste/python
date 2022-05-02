@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name 18.220.199.123;
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/ubuntu/Sasquatch_Websight/Sasquatch_Websight.sock;
+    }
+}
+
